@@ -1,7 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navbar from "./assets/components/navbar/Navbar";
-import Home from "./assets/components/home/Home";
-import Footer from "./assets/components/footer/Footer";
+import Navbar from "./components/navbar/Navbar";
+import Home from "./components/home/Home";
+import Footer from "./components/footer/Footer";
+import ListaCategorias from "./pages/categorias/lista/ListaCategorias";
+import FormCategoria from "./pages/categorias/form/FormCategoria";
+import DeleteCategoria from "./pages/categorias/delete/DeleteCategoria";
 
 
 function App() {
@@ -14,6 +17,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
+            <Route path="/categorias" element={<ListaCategorias />} />
+            <Route path="/cadastroCategoria" element={<FormCategoria />} />
+            <Route path="/editarCategoria/:id" element={<FormCategoria />} />
+            <Route path="/deletarCategoria/:id" element={<DeleteCategoria />} />
           </Routes>
         </div>
 
