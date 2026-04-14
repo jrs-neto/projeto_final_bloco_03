@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { ArrowRight, Pill, Heartbeat } from "phosphor-react";
 import imagemPaginaInicial from "../../assets/página-inicial.jpg";
 
@@ -32,10 +33,12 @@ function Home() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <button className="btn-primary flex items-center gap-2 w-full sm:w-auto justify-center group">
-                Ver Produtos
-                <ArrowRight size={20} weight="bold" className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              <Link to="/produtos" className="w-full sm:w-auto">
+                <button className="btn-primary flex items-center gap-2 w-full justify-center group">
+                  Ver Produtos
+                  <ArrowRight size={20} weight="bold" className="group-hover:translate-x-1 transition-transform" />
+                </button>
+              </Link>
 
               <button className="px-8 py-3 rounded-full font-medium text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition-all duration-300 w-full sm:w-auto shadow-sm flex items-center justify-center gap-2">
                 <Heartbeat size={20} className="text-rose-500" />

@@ -1,9 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Pill, MagnifyingGlass } from "phosphor-react";
 
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [termoPesquisa, setTermoPesquisa] = useState("");
 
   function handlePesquisa(e: React.FormEvent<HTMLFormElement>) {
@@ -14,6 +15,12 @@ function Navbar() {
       navigate("/produtos");
     }
   }
+
+  const isActive = (path: string) => {
+    if (path === "/home" && (location.pathname === "/" || location.pathname === "/home")) return true;
+    return location.pathname.startsWith(path) && path !== "/home";
+  };
+
   return (
     <nav className="w-full glass-nav sticky top-0 z-50 transition-all duration-300">
       <div className="container mx-auto px-6 py-4 flex justify-between items-center gap-6">
@@ -42,9 +49,9 @@ function Navbar() {
         </form>
 
         <div className="hidden md:flex gap-6 items-center font-medium text-slate-600 text-sm shrink-0">
-          <Link to="/home" className="hover:text-cyan-600 transition-colors">Início</Link>
-          <Link to="/categorias" className="hover:text-cyan-600 transition-colors">Categorias</Link>
-          <Link to="/produtos" className="hover:text-cyan-600 transition-colors">Produtos</Link>
+          <Link to="/home" className={`hover:text-cyan-600 transition-colors ${isActive("/home") ? "text-cyan-600 font-bold" : ""}`}>Início</Link>
+          <Link to="/categorias" className={`hover:text-cyan-600 transition-colors ${isActive("/categorias") ? "text-cyan-600 font-bold" : ""}`}>Categorias</Link>
+          <Link to="/produtos" className={`hover:text-cyan-600 transition-colors ${isActive("/produtos") ? "text-cyan-600 font-bold" : ""}`}>Produtos</Link>
           <Link to="/cadastroCategoria" className="px-4 py-2.5 rounded-full border border-slate-200 hover:border-cyan-600 hover:text-cyan-600 transition-all bg-white shadow-sm">
             Nova Categoria
           </Link>
